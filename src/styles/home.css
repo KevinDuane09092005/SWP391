@@ -1,0 +1,232 @@
+/* Home page (/home). Shared pieces (eyebrow, dashboard preview, carousel) are in marketing.css. */
+
+/* ---------- Hero ---------- */
+
+.home-hero {
+  padding: 48px 0 24px;
+}
+
+.home-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.home-hero__title {
+  margin-top: 28px;
+  font-size: clamp(32px, 3.9vw, 50px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.home-hero__text {
+  max-width: 500px;
+  margin-top: 24px;
+  color: var(--color-muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.home-hero__note {
+  margin-top: 24px;
+  color: var(--color-muted);
+  font-size: 14.5px;
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.home-hero__actions .btn-primary {
+  box-shadow: 0 8px 18px rgba(15, 110, 102, 0.22);
+}
+
+/* Four reassurance cards under the hero */
+.home-highlights {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-highlights__item {
+  display: flex;
+  gap: 12px;
+  padding: 22px 24px 28px;
+  color: var(--color-heading);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.home-highlights__icon {
+  margin-top: 3px;
+  color: var(--color-primary);
+}
+
+/* ---------- Handoff panel ---------- */
+
+.handoff {
+  padding: 28px 30px;
+  scroll-margin-top: calc(var(--header-height) + 16px);
+}
+
+.handoff__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.handoff__title {
+  margin-top: 12px;
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 650;
+}
+
+.handoff__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.handoff__link {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.handoff__link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.handoff__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.handoff__step {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: #fbfcfd;
+}
+
+.handoff__number {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.handoff__step-title {
+  color: var(--color-heading);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.handoff__summary {
+  margin-top: 18px;
+  color: var(--color-muted);
+}
+
+/* ---------- What to add first ---------- */
+
+/* Doubled class so this wins over the default --per-page in marketing.css */
+.carousel__track.add-first__track {
+  --per-page: 3;
+}
+
+.add-first__card {
+  padding: 24px 26px 32px;
+}
+
+.add-first__card-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.add-first__card-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.add-first__card-text {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1100px) {
+  .home-highlights {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .home-hero__inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .home-hero__text {
+    max-width: 600px;
+  }
+
+  .handoff__steps {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .carousel__track.add-first__track {
+    --per-page: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    padding-top: 32px;
+  }
+
+  .home-hero__actions .btn {
+    flex: 1;
+  }
+
+  .home-highlights {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .home-highlights__item {
+    padding: 16px 18px;
+  }
+
+  .handoff {
+    padding: 22px 18px;
+  }
+
+  .carousel__track.add-first__track {
+    --per-page: 1;
+  }
+}

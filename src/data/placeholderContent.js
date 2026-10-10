@@ -12,6 +12,8 @@ const en = {
     register: { title: 'Create your vault' },
     privacy: { title: 'Privacy' },
     contact: { title: 'Contact' },
+    checklist: { title: 'Digital estate planning checklist' },
+    executorGuide: { title: 'Executor access guide' },
     notFound: {
       title: 'Page not found',
       message: 'The page you are looking for does not exist.',
@@ -30,6 +32,8 @@ const vi = {
     register: { title: 'Tạo kho của bạn' },
     privacy: { title: 'Quyền riêng tư' },
     contact: { title: 'Liên hệ' },
+    checklist: { title: 'Danh sách kiểm tra di sản số' },
+    executorGuide: { title: 'Hướng dẫn cho người thực thi' },
     notFound: {
       title: 'Không tìm thấy trang',
       message: 'Trang bạn đang tìm không tồn tại.',

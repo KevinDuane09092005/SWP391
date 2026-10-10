@@ -6,11 +6,66 @@ import Icon from '../Icon.jsx'
 import LanguageSwitcher from '../LanguageSwitcher.jsx'
 import SmartLink from '../SmartLink.jsx'
 
-// Site header used by the landing and pricing pages.
+// Split '/#security' into its page ('/') and section id ('security').
+function parseLink(link) {
+  const [path, sectionId] = (link.to ?? '').split('#')
+  return { path, sectionId }
+}
+
+// Site header used by the landing, home, and pricing pages.
+// The current item is underlined: page links match the URL, and section links
+// (e.g. '/#security') match whichever section is on screen while scrolling.
 export default function Header({ links, ui }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState(null)
   const { pathname } = useLocation()
   const isHome = pathname === '/'
+
+  // Section ids on this page that the nav links point to, as a string so the effect
+  // below only re-runs when the list really changes.
+  const sectionKey = links
+    .map(parseLink)
+    .filter(({ path, sectionId }) => sectionId && path === pathname)
+    .map(({ sectionId }) => sectionId)
+    .join(',')
+
+  // Track which linked section sits just under the sticky header.
+  useEffect(() => {
+    if (!sectionKey) return undefined
+    const ids = sectionKey.split(',')
+    let frame = 0
+
+    const update = () => {
+      frame = 0
+      const line = (document.querySelector('.site-header')?.offsetHeight ?? 64) + 24
+      let current = null
+      for (const id of ids) {
+        const rect = document.getElementById(id)?.getBoundingClientRect()
+        if (rect && rect.top <= line && rect.bottom > line) current = id
+      }
+      setActiveSection(current)
+    }
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update)
+    }
+
+    schedule()
+    window.addEventListener('scroll', schedule, { passive: true })
+    window.addEventListener('resize', schedule)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', schedule)
+      window.removeEventListener('resize', schedule)
+    }
+  }, [sectionKey])
+
+  // 'page' for the page you are on, 'location' for the section in view.
+  const currentFor = (link) => {
+    const { path, sectionId } = parseLink(link)
+    if (!link.to || path !== pathname) return undefined
+    if (!sectionId) return 'page'
+    return sectionId === activeSection ? 'location' : undefined
+  }
 
   // Close the mobile menu with the Escape key.
   useEffect(() => {
@@ -64,7 +119,7 @@ export default function Header({ links, ui }) {
                   to={link.to}
                   href={link.href}
                   className="site-nav__link"
-                  aria-current={link.to === pathname ? 'page' : undefined}
+                  aria-current={currentFor(link)}
                   onClick={closeMenu}
                 >
                   {link.label}

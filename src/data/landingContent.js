@@ -17,7 +17,8 @@ const en = {
   },
 
   navLinks: [
-    { label: 'How It Works', to: '/#how-it-works' },
+    { label: 'Home', to: '/home' },
+    { label: 'How It Works', to: '/how-it-works' },
     { label: 'Security', to: '/#security' },
     { label: 'Pricing', to: '/pricing' },
   ],
@@ -179,7 +180,8 @@ const vi = {
   },
 
   navLinks: [
-    { label: 'Cách hoạt động', to: '/#how-it-works' },
+    { label: 'Trang chủ', to: '/home' },
+    { label: 'Cách hoạt động', to: '/how-it-works' },
     { label: 'Bảo mật', to: '/#security' },
     { label: 'Bảng giá', to: '/pricing' },
   ],

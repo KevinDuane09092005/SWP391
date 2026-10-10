@@ -1,0 +1,467 @@
+/*
+  Shared pieces for the marketing pages (Home, How it works): page background,
+  eyebrow labels, section headings, the mini dashboard preview, and the carousel.
+  Builds on global.css; header/footer styles live in landing.css.
+*/
+
+.marketing-page {
+  background:
+    radial-gradient(1200px 520px at 0% 0%, #e6f1ef 0%, transparent 60%),
+    radial-gradient(900px 480px at 100% 10%, #f4efe9 0%, transparent 60%),
+    var(--color-bg);
+}
+
+/* Small uppercase label above a heading */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid #cfe3df;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.7);
+  color: var(--color-primary);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Filled variant, used inside cards */
+.eyebrow--solid {
+  border-color: transparent;
+  background-color: var(--color-primary-soft);
+}
+
+.section--tight {
+  padding: 24px 0;
+}
+
+.icon-tile--round {
+  border-radius: 999px;
+}
+
+/* Heading + intro text under an eyebrow */
+.block-title {
+  margin-top: 12px;
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 650;
+}
+
+.block-text {
+  margin-top: 6px;
+  color: var(--color-muted);
+  font-size: 16px;
+}
+
+/* ---------- Dashboard preview (decorative) ---------- */
+
+.dash-preview {
+  padding: 18px;
+  border: 1px solid #cfe3df;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #eef6f4 0%, #f7f9fa 55%, #dfe9f3 100%);
+  box-shadow: 0 24px 48px rgba(15, 29, 53, 0.1);
+}
+
+.dash-preview__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.dash-preview__chips .badge {
+  height: 28px;
+  font-size: 13.5px;
+}
+
+.dash-preview__frame {
+  padding: 14px;
+  border-radius: 14px;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.dash-preview__badge {
+  height: 28px;
+  margin-bottom: 10px;
+  font-size: 13.5px;
+}
+
+/* The mini app itself uses tiny type so it reads as a screenshot */
+.dash {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background-color: #f6f8fa;
+  color: var(--color-muted);
+  font-size: 6.5px;
+  line-height: 1.45;
+}
+
+.dash p {
+  margin: 0;
+}
+
+.dash strong {
+  color: var(--color-heading);
+}
+
+.dash__topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.dash__app {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dash__app strong {
+  display: block;
+  font-size: 6.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dash__logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background-color: var(--color-heading);
+  color: #ffffff;
+}
+
+.dash__user {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dash__chip,
+.dash__button {
+  display: inline-block;
+  padding: 2px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dash__button {
+  color: var(--color-heading);
+}
+
+.dash__body {
+  display: grid;
+  grid-template-columns: 116px minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px 12px 12px;
+}
+
+.dash__sidebar,
+.dash__stat,
+.dash__table {
+  padding: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: var(--color-surface);
+}
+
+.dash__sidebar {
+  align-self: start;
+}
+
+.dash__label {
+  margin-top: 6px;
+  font-size: 5.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dash__label:first-child {
+  margin-top: 0;
+}
+
+.dash__workspace {
+  display: block;
+  font-size: 7px;
+}
+
+.dash__switch {
+  display: flex;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.dash__switch span {
+  padding: 1px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+}
+
+.dash__switch .is-active {
+  background-color: var(--color-surface-muted);
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+.dash__nav {
+  display: grid;
+  gap: 1px;
+  margin: 8px 0 0;
+  padding: 6px 0 0;
+  border-top: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.dash__nav li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.dash__nav .is-active {
+  border: 1px solid var(--color-border);
+  color: var(--color-heading);
+  font-weight: 600;
+}
+
+.dash__title {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.dash__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.dash__stat strong {
+  display: block;
+  margin: 2px 0 4px;
+  font-size: 10px;
+}
+
+.dash__table {
+  margin-top: 8px;
+}
+
+.dash__main > .dash__table:first-child {
+  margin-top: 0;
+}
+
+.dash__table-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.dash__table-title {
+  font-size: 7.5px;
+}
+
+.dash__search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+}
+
+.dash__search span:first-child {
+  padding: 2px 6px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+/* Column widths come from the `--cols` value set by MiniTable */
+.dash__row {
+  display: grid;
+  grid-template-columns: var(--cols, repeat(5, minmax(0, 1fr)));
+  gap: 6px;
+  align-items: center;
+  padding: 5px 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-heading);
+}
+
+.dash__row--head {
+  color: var(--color-muted);
+  font-size: 5.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dash__sub {
+  display: block;
+  color: var(--color-muted);
+}
+
+.dash__tag {
+  display: inline-block;
+  padding: 1px 4px;
+  border-radius: 3px;
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.dash__tag--muted {
+  background-color: var(--color-surface-muted);
+  color: var(--color-muted);
+}
+
+.dash__table-foot {
+  margin-top: 4px;
+}
+
+/* ---------- Carousel ---------- */
+
+/* Slides per page are set with --per-page on the track (default 1) */
+.carousel__track {
+  --per-page: 1;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - (var(--per-page) - 1) * 20px) / var(--per-page));
+  gap: 20px;
+  margin: 24px 0 0;
+  padding: 0 0 4px;
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__track > li {
+  scroll-snap-align: start;
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.carousel__dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Dots keep a 24px tap area; the visible pill is drawn with ::before */
+.carousel__dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.carousel__dot::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background-color: var(--color-border-strong);
+  transition:
+    width 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.carousel__dot[aria-current='true']::before {
+  width: 38px;
+  background-color: var(--color-primary);
+}
+
+.carousel__arrows {
+  display: flex;
+  gap: 12px;
+}
+
+.carousel__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background-color: var(--color-surface);
+  color: var(--color-heading);
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.carousel__arrow:hover:not(:disabled) {
+  border-color: var(--color-muted);
+}
+
+.carousel__arrow:disabled {
+  color: var(--color-border-strong);
+  cursor: default;
+}
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 640px) {
+  /* The mini dashboard drops its sidebar and keeps the first three table columns */
+  .dash-preview {
+    padding: 10px;
+  }
+
+  .dash-preview__frame {
+    padding: 10px;
+  }
+
+  .dash__body {
+    grid-template-columns: 1fr;
+  }
+
+  .dash__sidebar,
+  .dash__user > span:first-child {
+    display: none;
+  }
+
+  .dash__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .dash__row {
+    grid-template-columns: 1.3fr 1fr 1.2fr;
+  }
+
+  .dash__row > :nth-child(n + 4) {
+    display: none;
+  }
+}

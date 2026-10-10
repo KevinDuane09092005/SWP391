@@ -44,6 +44,7 @@
 }
 
 .site-nav__link {
+  position: relative;
   color: var(--color-muted);
   font-size: 14px;
   font-weight: 500;
@@ -51,8 +52,26 @@
 }
 
 .site-nav__link:hover,
-.site-nav__link[aria-current='page'] {
+.site-nav__link[aria-current] {
   color: var(--color-heading);
+}
+
+/* Underline under the current page or section */
+.site-nav__links .site-nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.site-nav__links .site-nav__link[aria-current]::after {
+  transform: scaleX(1);
 }
 
 .menu-toggle {
@@ -353,7 +372,7 @@
 
 /* ---------- Mobile navigation ---------- */
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .menu-toggle {
     display: inline-flex;
   }
@@ -402,11 +421,27 @@
     justify-content: flex-start;
   }
 
+  /* In the mobile menu the current item gets a bar on the left instead */
+  .site-nav__links .site-nav__link::after {
+    display: none;
+  }
+
+  .site-nav__links .site-nav__link[aria-current] {
+    padding-left: 12px;
+    box-shadow: inset 3px 0 0 var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
   .site-nav__actions .btn-primary {
     height: 42px;
     margin-top: 16px;
   }
+}
 
+/* ---------- Mobile ---------- */
+
+@media (max-width: 768px) {
   .card-grid--three {
     grid-template-columns: 1fr;
   }
