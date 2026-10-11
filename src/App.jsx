@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
+import AuthPage from './pages/AuthPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import HowItWorksPage from './pages/HowItWorksPage.jsx'
 import LandingPage from './pages/LandingPage.jsx'
@@ -16,8 +17,11 @@ export default function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/how-it-works" element={<HowItWorksPage />} />
-        <Route path="/login" element={<PlaceholderPage page="login" />} />
-        <Route path="/register" element={<PlaceholderPage page="register" />} />
+        {/* `key` gives each form its own state when switching between the two tabs */}
+        <Route path="/login" element={<AuthPage key="signin" mode="signin" />} />
+        <Route path="/register" element={<AuthPage key="signup" mode="signup" />} />
+        <Route path="/forgot-password" element={<PlaceholderPage page="forgotPassword" />} />
+        <Route path="/terms" element={<PlaceholderPage page="terms" />} />
         <Route path="/pricing" element={<PricingPage />} />
         <Route path="/privacy" element={<PlaceholderPage page="privacy" />} />
         <Route path="/contact" element={<PlaceholderPage page="contact" />} />

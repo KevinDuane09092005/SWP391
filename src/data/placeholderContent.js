@@ -8,8 +8,8 @@ const en = {
   back: 'Back to home',
   languageLabel: 'Language',
   pages: {
-    login: { title: 'Sign in' },
-    register: { title: 'Create your vault' },
+    forgotPassword: { title: 'Reset your password' },
+    terms: { title: 'Terms of Service' },
     privacy: { title: 'Privacy' },
     contact: { title: 'Contact' },
     checklist: { title: 'Digital estate planning checklist' },
@@ -28,8 +28,8 @@ const vi = {
   back: 'Về trang chủ',
   languageLabel: 'Ngôn ngữ',
   pages: {
-    login: { title: 'Đăng nhập' },
-    register: { title: 'Tạo kho của bạn' },
+    forgotPassword: { title: 'Đặt lại mật khẩu' },
+    terms: { title: 'Điều khoản dịch vụ' },
     privacy: { title: 'Quyền riêng tư' },
     contact: { title: 'Liên hệ' },
     checklist: { title: 'Danh sách kiểm tra di sản số' },
