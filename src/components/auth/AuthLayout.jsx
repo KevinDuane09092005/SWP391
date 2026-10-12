@@ -7,6 +7,7 @@ import { authContent } from '../../data/authContent.js'
 import { landingContent } from '../../data/landingContent.js'
 import { useLanguage } from '../../i18n/LanguageContext.jsx'
 import '../../styles/marketing.css'
+import '../../styles/forms.css'
 import '../../styles/auth.css'
 
 // Frame shared by every auth page: top bar, brand panel on the left, card on the right.

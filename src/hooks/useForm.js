@@ -4,6 +4,8 @@ import { useState } from 'react'
 // - `validate(values)` returns { fieldName: message } for every field with a problem.
 // - A field shows its error after the user leaves it once, or after the first submit.
 // - Inputs get the id `${formId}-${name}`, so the first bad field can be focused.
+// - `fieldOrder` is a list of field names, or a function (values) => list when the
+//   fields on screen depend on the values (e.g. the asset type).
 export default function useForm({ formId, initialValues, validate, fieldOrder }) {
   const [values, setValues] = useState(initialValues)
   const [touched, setTouched] = useState({})
@@ -33,7 +35,8 @@ export default function useForm({ formId, initialValues, validate, fieldOrder })
   // otherwise shows all errors and moves the cursor to the first bad field.
   const checkBeforeSubmit = () => {
     setSubmitted(true)
-    const firstInvalid = fieldOrder.find((name) => errors[name])
+    const order = typeof fieldOrder === 'function' ? fieldOrder(values) : fieldOrder
+    const firstInvalid = order.find((name) => errors[name])
     if (firstInvalid) {
       document.getElementById(`${formId}-${firstInvalid}`)?.focus()
       return false

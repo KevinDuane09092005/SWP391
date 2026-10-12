@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Outlet, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import { DashboardRedirect, RedirectIfSignedIn, RequireAuth } from './auth/guards.jsx'
 import { ROLES } from './auth/roles.js'
@@ -7,6 +7,12 @@ import LoginPage from './pages/auth/LoginPage.jsx'
 import RegisterPage from './pages/auth/RegisterPage.jsx'
 import VerifyOtpPage from './pages/auth/VerifyOtpPage.jsx'
 import RoleDashboardPage from './pages/dashboard/RoleDashboardPage.jsx'
+import AddAssetPage from './pages/owner/AddAssetPage.jsx'
+import AssetDetailsPage from './pages/owner/AssetDetailsPage.jsx'
+import CreateVaultPage from './pages/owner/CreateVaultPage.jsx'
+import MyVaultsPage from './pages/owner/MyVaultsPage.jsx'
+import OwnerDashboardPage from './pages/owner/OwnerDashboardPage.jsx'
+import VaultDetailsPage from './pages/owner/VaultDetailsPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import HowItWorksPage from './pages/HowItWorksPage.jsx'
 import LandingPage from './pages/LandingPage.jsx'
@@ -49,10 +55,20 @@ export default function App() {
           path="/dashboard/admin"
           element={<RequireAuth allowedRoles={[ROLES.ADMIN]}><RoleDashboardPage role={ROLES.ADMIN} /></RequireAuth>}
         />
+
+        {/* Flow 2: Vault Owner area. Every page inside needs the VAULT_OWNER role. */}
         <Route
           path="/dashboard/owner"
-          element={<RequireAuth allowedRoles={[ROLES.VAULT_OWNER]}><RoleDashboardPage role={ROLES.VAULT_OWNER} /></RequireAuth>}
-        />
+          element={<RequireAuth allowedRoles={[ROLES.VAULT_OWNER]}><Outlet /></RequireAuth>}
+        >
+          <Route index element={<OwnerDashboardPage />} />
+          <Route path="vaults" element={<MyVaultsPage />} />
+          <Route path="vaults/new" element={<CreateVaultPage />} />
+          <Route path="vaults/:vaultId" element={<VaultDetailsPage />} />
+          <Route path="vaults/:vaultId/assets/new" element={<AddAssetPage />} />
+          <Route path="vaults/:vaultId/assets/:assetId" element={<AssetDetailsPage />} />
+        </Route>
+
         <Route
           path="/dashboard/executor"
           element={<RequireAuth allowedRoles={[ROLES.EXECUTOR]}><RoleDashboardPage role={ROLES.EXECUTOR} /></RequireAuth>}

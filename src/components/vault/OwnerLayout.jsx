@@ -1,0 +1,45 @@
+import { NavLink } from 'react-router-dom'
+import DashboardLayout from '../dashboard/DashboardLayout.jsx'
+import Icon from '../Icon.jsx'
+import { vaultContent } from '../../data/vaultContent.js'
+import { useLanguage } from '../../i18n/LanguageContext.jsx'
+import { IS_DEMO_MODE } from '../../services/vaultService.js'
+import '../../styles/forms.css'
+import '../../styles/vault.css'
+
+// Frame for the Vault Owner pages: the Flow 1 dashboard top bar (user, role, Log out)
+// plus a side menu and the demo-data notice.
+export default function OwnerLayout({ children }) {
+  const { language } = useLanguage()
+  const t = vaultContent[language]
+
+  const links = [
+    { to: '/dashboard/owner', label: t.nav.overview, icon: 'home', end: true },
+    { to: '/dashboard/owner/vaults', label: t.nav.vaults, icon: 'lock' },
+  ]
+
+  return (
+    <DashboardLayout>
+      <div className="owner-layout">
+        <nav className="owner-nav" aria-label={t.nav.label}>
+          {links.map((link) => (
+            <NavLink key={link.to} to={link.to} end={link.end} className="owner-nav__link">
+              <Icon name={link.icon} size={17} />
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="owner-content">
+          {IS_DEMO_MODE && (
+            <p className="demo-banner">
+              <Icon name="info" size={16} />
+              <span>{t.demoNotice}</span>
+            </p>
+          )}
+          {children}
+        </div>
+      </div>
+    </DashboardLayout>
+  )
+}
