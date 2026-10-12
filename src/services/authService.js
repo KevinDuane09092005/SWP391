@@ -1,43 +1,61 @@
-// Sign in / sign up calls for the auth page.
-//
-// Backend hook-up: replace the mock bodies below with real requests, e.g.
-//
-//   const response = await fetch('/api/auth/login', {
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify({ email, password, remember }),
-//   })
-//   if (!response.ok) throw new AuthError((await response.json()).code)
-//   return response.json()
-//
-// To show a translated message, throw an AuthError with one of these codes
-// (texts are in src/data/authContent.js under `errors`):
-//   INVALID_CREDENTIALS  wrong email or password
-//   EMAIL_TAKEN          sign up with an email that already has an account
-//   NETWORK              could not reach the server
-// Any other error shows the generic message.
+import {
+  mockLogin,
+  mockLogout,
+  mockRegister,
+  mockRequestPasswordReset,
+  mockResendOtp,
+  mockVerifyOtp,
+} from '../mocks/mockAuth.js'
+import { readSession } from '../auth/session.js'
 
-export class AuthError extends Error {
-  constructor(code, message = code) {
-    super(message)
-    this.name = 'AuthError'
-    this.code = code
-  }
+// The ONLY place pages call for authentication (Flow 1).
+//
+// Right now every function uses the demo mock in src/mocks/mockAuth.js.
+// When the backend is ready, replace each body with a request that follows the
+// backend's real API contract. Keep the same inputs and outputs below so the pages
+// do not need to change, and throw `new AuthError(code)` (src/auth/AuthError.js)
+// so the right translated message is shown.
+
+// True while the mock is in use. Pages use it to show the "Demo mode" notices.
+export const IS_DEMO_MODE = true
+
+// Input:  { fullName, identifier, password, plan, billing }  (identifier = email or phone)
+// Output: { identifier, verificationRequired: true }
+export function register(data) {
+  return mockRegister(data)
 }
 
-const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
-
-// Request body: { email, password, remember }
-// Expected response: { user: { id, fullName, email } }
-export async function signIn({ email }) {
-  await wait(700)
-  return { user: { id: 'demo', fullName: 'Demo Owner', email } }
+// Input:  { identifier, code }
+// Output: { verified: true }
+export function verifyOtp(data) {
+  return mockVerifyOtp(data)
 }
 
-// Request body: { fullName, email, phone, password, plan, billing }
-// `plan` and `billing` come from the pricing page link and may be empty.
-// Expected response: { user: { id, fullName, email } }
-export async function signUp({ fullName, email }) {
-  await wait(900)
-  return { user: { id: 'demo', fullName, email } }
+// Input:  { identifier }
+// Output: { resent: true }
+export function resendOtp(data) {
+  return mockResendOtp(data)
+}
+
+// Input:  { identifier, password }
+// Output: { user: { id, fullName, identifier, role } }
+export function login(data) {
+  return mockLogin(data)
+}
+
+// Input:  { identifier }
+// Output: { requested: true }
+export function requestPasswordReset(data) {
+  return mockRequestPasswordReset(data)
+}
+
+// Output: { id, fullName, identifier, role } or null.
+// Demo: reads the saved session. With a backend this should ask the server who is signed in.
+export async function getCurrentUser() {
+  return readSession()?.user ?? null
+}
+
+// With a backend this should end the session on the server too.
+export function logout() {
+  return mockLogout()
 }

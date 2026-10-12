@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
+import { useAuth } from '../../auth/AuthContext.jsx'
+import { getDashboardPath } from '../../auth/roles.js'
 import Brand from '../Brand.jsx'
 import Button from '../Button.jsx'
 import Icon from '../Icon.jsx'
@@ -20,6 +22,7 @@ export default function Header({ links, ui }) {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState(null)
   const { pathname } = useLocation()
+  const { user } = useAuth()
   const isHome = pathname === '/'
 
   // Section ids on this page that the nav links point to, as a string so the effect
@@ -128,12 +131,20 @@ export default function Header({ links, ui }) {
               ))}
             </div>
             <div className="site-nav__actions">
-              <Button to="/login" variant="link" className="site-nav__link" onClick={closeMenu}>
-                {ui.signIn}
-              </Button>
-              <Button to="/register" size="sm" onClick={closeMenu}>
-                {ui.getStarted}
-              </Button>
+              {user ? (
+                <Button to={getDashboardPath(user.role)} size="sm" onClick={closeMenu}>
+                  {ui.myDashboard}
+                </Button>
+              ) : (
+                <>
+                  <Button to="/login" variant="link" className="site-nav__link" onClick={closeMenu}>
+                    {ui.signIn}
+                  </Button>
+                  <Button to="/register" size="sm" onClick={closeMenu}>
+                    {ui.getStarted}
+                  </Button>
+                </>
+              )}
             </div>
           </nav>
 

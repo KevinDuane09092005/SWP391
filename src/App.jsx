@@ -1,28 +1,31 @@
 import { Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop.jsx'
-import AuthPage from './pages/AuthPage.jsx'
+import { DashboardRedirect, RedirectIfSignedIn, RequireAuth } from './auth/guards.jsx'
+import { ROLES } from './auth/roles.js'
+import ForgotPasswordPage from './pages/auth/ForgotPasswordPage.jsx'
+import LoginPage from './pages/auth/LoginPage.jsx'
+import RegisterPage from './pages/auth/RegisterPage.jsx'
+import VerifyOtpPage from './pages/auth/VerifyOtpPage.jsx'
+import RoleDashboardPage from './pages/dashboard/RoleDashboardPage.jsx'
 import HomePage from './pages/HomePage.jsx'
 import HowItWorksPage from './pages/HowItWorksPage.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import PlaceholderPage from './pages/PlaceholderPage.jsx'
 import PricingPage from './pages/PricingPage.jsx'
 
-// All pages of the app. Placeholder routes will be replaced by real pages in Stage 4.
+// All pages of the app.
 // Placeholder text lives in src/data/placeholderContent.js, keyed by `page`.
 export default function App() {
   return (
     <>
       <ScrollToTop />
       <Routes>
+        {/* Public pages */}
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/how-it-works" element={<HowItWorksPage />} />
-        {/* `key` gives each form its own state when switching between the two tabs */}
-        <Route path="/login" element={<AuthPage key="signin" mode="signin" />} />
-        <Route path="/register" element={<AuthPage key="signup" mode="signup" />} />
-        <Route path="/forgot-password" element={<PlaceholderPage page="forgotPassword" />} />
-        <Route path="/terms" element={<PlaceholderPage page="terms" />} />
         <Route path="/pricing" element={<PricingPage />} />
+        <Route path="/terms" element={<PlaceholderPage page="terms" />} />
         <Route path="/privacy" element={<PlaceholderPage page="privacy" />} />
         <Route path="/contact" element={<PlaceholderPage page="contact" />} />
         <Route path="/guides/checklist" element={<PlaceholderPage page="checklist" />} />
@@ -30,6 +33,39 @@ export default function App() {
           path="/guides/executor-access"
           element={<PlaceholderPage page="executorGuide" />}
         />
+
+        {/* Flow 1: sign up, verify, sign in. Signed-in users are sent to their dashboard. */}
+        <Route path="/register" element={<RedirectIfSignedIn><RegisterPage /></RedirectIfSignedIn>} />
+        <Route path="/verify-otp" element={<RedirectIfSignedIn><VerifyOtpPage /></RedirectIfSignedIn>} />
+        <Route path="/login" element={<RedirectIfSignedIn><LoginPage /></RedirectIfSignedIn>} />
+        <Route
+          path="/forgot-password"
+          element={<RedirectIfSignedIn><ForgotPasswordPage /></RedirectIfSignedIn>}
+        />
+
+        {/* Signed-in area: one placeholder dashboard per role (see src/auth/roles.js) */}
+        <Route path="/dashboard" element={<RequireAuth><DashboardRedirect /></RequireAuth>} />
+        <Route
+          path="/dashboard/admin"
+          element={<RequireAuth allowedRoles={[ROLES.ADMIN]}><RoleDashboardPage role={ROLES.ADMIN} /></RequireAuth>}
+        />
+        <Route
+          path="/dashboard/owner"
+          element={<RequireAuth allowedRoles={[ROLES.VAULT_OWNER]}><RoleDashboardPage role={ROLES.VAULT_OWNER} /></RequireAuth>}
+        />
+        <Route
+          path="/dashboard/executor"
+          element={<RequireAuth allowedRoles={[ROLES.EXECUTOR]}><RoleDashboardPage role={ROLES.EXECUTOR} /></RequireAuth>}
+        />
+        <Route
+          path="/dashboard/beneficiary"
+          element={<RequireAuth allowedRoles={[ROLES.BENEFICIARY]}><RoleDashboardPage role={ROLES.BENEFICIARY} /></RequireAuth>}
+        />
+        <Route
+          path="/dashboard/verifier"
+          element={<RequireAuth allowedRoles={[ROLES.LEGAL_VERIFIER]}><RoleDashboardPage role={ROLES.LEGAL_VERIFIER} /></RequireAuth>}
+        />
+
         <Route path="*" element={<PlaceholderPage page="notFound" />} />
       </Routes>
     </>

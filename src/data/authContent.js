@@ -1,13 +1,13 @@
-// All text on the sign in / sign up page, one block per language.
+// All text on the sign in, register, OTP and forgot-password pages, one block per language.
 
 const en = {
   backHome: 'Back to home',
   languageLabel: 'Language',
   tabsLabel: 'Account',
   tabs: { signup: 'Sign Up', signin: 'Sign In' },
+  demoBadge: 'Demo mode',
 
   panel: {
-    eyebrow: 'LegacyVault',
     title: 'Your digital legacy, ready for the moment it matters.',
     points: [
       'Records are encrypted before they are stored',
@@ -19,7 +19,7 @@ const en = {
   signup: {
     title: 'Create your vault owner account',
     subtitle: 'Start protecting your digital legacy in minutes.',
-    submit: 'Create account',
+    submit: 'Register',
     submitting: 'Creating account…',
     switchPrompt: 'Already have an account?',
     switchLink: 'Sign in',
@@ -36,14 +36,50 @@ const en = {
     switchLink: 'Sign up now',
     remember: 'Keep me signed in',
     forgot: 'Forgot password?',
+    verifyNow: 'Verify this account',
+    notices: {
+      verified: 'Your account is verified. Sign in to continue.',
+      loggedOut: 'You have been signed out.',
+      signInRequired: 'Please sign in to open that page.',
+    },
+  },
+
+  demoAccounts: {
+    title: 'Demo accounts',
+    text: (password) => `Sign-in is simulated in this browser. Every demo account uses the password ${password}.`,
+    use: 'Use',
+  },
+
+  otp: {
+    title: 'Verify your account',
+    subtitle: (identifier) => `Enter the 6-digit code for ${identifier}.`,
+    demoNote: (code) =>
+      `Demo mode: no email or SMS is sent and no real code is checked. Use the code ${code}.`,
+    submit: 'Verify',
+    submitting: 'Verifying…',
+    resend: 'Resend code',
+    resending: 'Sending…',
+    resendIn: (seconds) => `Resend code in ${seconds}s`,
+    resent: (code) => `Demo mode: a new code was "issued", but nothing was sent. Keep using ${code}.`,
+    noCode: "Didn't get a code?",
+    wrongAccount: 'Register with a different email or phone',
+  },
+
+  forgot: {
+    title: 'Reset your password',
+    subtitle: 'Enter the email or phone number on your account.',
+    submit: 'Send reset instructions',
+    submitting: 'Sending…',
+    sent: 'Demo mode: password reset is not built yet, so nothing was sent. In the real app, reset instructions would go to this email or phone if an account exists.',
+    back: 'Back to sign in',
   },
 
   fields: {
     fullName: { label: 'Full name', placeholder: 'John Doe' },
-    email: { label: 'Email address', placeholder: 'john@example.com' },
-    phone: { label: 'Phone number', optional: 'Optional', placeholder: '+84 912 345 678' },
+    identifier: { label: 'Email or phone number', placeholder: 'john@example.com or 0912 345 678' },
     password: { label: 'Password', placeholder: 'Enter password', newPlaceholder: 'Create a password' },
     confirmPassword: { label: 'Confirm password', placeholder: 'Re-enter password' },
+    code: { label: 'Verification code', placeholder: '6-digit code' },
   },
 
   showPassword: 'Show password',
@@ -66,29 +102,27 @@ const en = {
 
   validation: {
     fullName: 'Please enter your full name.',
-    emailRequired: 'Please enter your email address.',
-    emailInvalid: 'Please enter a valid email address, like name@example.com.',
-    phone: 'Please enter a valid phone number, or leave it empty.',
+    identifierRequired: 'Please enter your email or phone number.',
+    identifierInvalid: 'Enter a valid email (name@example.com) or phone number (9–15 digits).',
     passwordRequired: 'Please enter your password.',
     passwordWeak: 'Your password does not meet all the requirements below.',
+    confirmRequired: 'Please re-enter your password.',
     confirm: 'Passwords do not match.',
     terms: 'Please accept the Terms of Service and Privacy Policy to continue.',
+    otpRequired: 'Please enter the verification code.',
+    otpInvalid: 'The code must be exactly 6 digits.',
   },
 
   errors: {
-    INVALID_CREDENTIALS: 'That email and password do not match. Please try again.',
-    EMAIL_TAKEN: 'An account with this email already exists. Try signing in instead.',
+    INVALID_CREDENTIALS: 'That email/phone and password do not match. Please try again.',
+    ACCOUNT_EXISTS: 'An account with this email or phone already exists. Try signing in instead.',
+    ACCOUNT_NOT_VERIFIED: 'This account is not verified yet. Enter your verification code first.',
+    INVALID_OTP: 'That code is not correct. Check it and try again.',
+    OTP_ATTEMPTS_EXCEEDED: 'Too many wrong codes. Request a new code to try again.',
+    REGISTRATION_NOT_FOUND:
+      'We could not find this registration. In demo mode new accounts are lost when the page reloads, so please register again.',
     NETWORK: 'We could not reach the server. Check your connection and try again.',
     generic: 'Something went wrong. Please try again.',
-  },
-
-  success: {
-    signupTitle: 'Your account is ready',
-    signupText: (name) => `Welcome, ${name}. Your vault owner account has been created.`,
-    signinTitle: 'You are signed in',
-    signinText: (email) => `Signed in as ${email}.`,
-    prototype: 'The owner dashboard is coming in the next build stage.',
-    cta: 'Go to home',
   },
 }
 
@@ -97,9 +131,9 @@ const vi = {
   languageLabel: 'Ngôn ngữ',
   tabsLabel: 'Tài khoản',
   tabs: { signup: 'Đăng ký', signin: 'Đăng nhập' },
+  demoBadge: 'Chế độ demo',
 
   panel: {
-    eyebrow: 'LegacyVault',
     title: 'Di sản số của bạn, sẵn sàng cho đúng thời điểm.',
     points: [
       'Hồ sơ được mã hóa trước khi lưu trữ',
@@ -111,7 +145,7 @@ const vi = {
   signup: {
     title: 'Tạo tài khoản chủ kho',
     subtitle: 'Bắt đầu bảo vệ di sản số của bạn chỉ trong vài phút.',
-    submit: 'Tạo tài khoản',
+    submit: 'Đăng ký',
     submitting: 'Đang tạo tài khoản…',
     switchPrompt: 'Đã có tài khoản?',
     switchLink: 'Đăng nhập',
@@ -128,14 +162,50 @@ const vi = {
     switchLink: 'Đăng ký ngay',
     remember: 'Duy trì đăng nhập',
     forgot: 'Quên mật khẩu?',
+    verifyNow: 'Xác minh tài khoản này',
+    notices: {
+      verified: 'Tài khoản đã được xác minh. Hãy đăng nhập để tiếp tục.',
+      loggedOut: 'Bạn đã đăng xuất.',
+      signInRequired: 'Vui lòng đăng nhập để mở trang đó.',
+    },
+  },
+
+  demoAccounts: {
+    title: 'Tài khoản demo',
+    text: (password) => `Đăng nhập chỉ được mô phỏng trong trình duyệt này. Mọi tài khoản demo dùng mật khẩu ${password}.`,
+    use: 'Dùng',
+  },
+
+  otp: {
+    title: 'Xác minh tài khoản',
+    subtitle: (identifier) => `Nhập mã 6 chữ số cho ${identifier}.`,
+    demoNote: (code) =>
+      `Chế độ demo: không có email hay SMS nào được gửi và không có mã thật nào được kiểm tra. Hãy dùng mã ${code}.`,
+    submit: 'Xác minh',
+    submitting: 'Đang xác minh…',
+    resend: 'Gửi lại mã',
+    resending: 'Đang gửi…',
+    resendIn: (seconds) => `Gửi lại mã sau ${seconds}s`,
+    resent: (code) => `Chế độ demo: đã "cấp" mã mới nhưng không có gì được gửi. Tiếp tục dùng mã ${code}.`,
+    noCode: 'Chưa nhận được mã?',
+    wrongAccount: 'Đăng ký bằng email hoặc số điện thoại khác',
+  },
+
+  forgot: {
+    title: 'Đặt lại mật khẩu',
+    subtitle: 'Nhập email hoặc số điện thoại của tài khoản.',
+    submit: 'Gửi hướng dẫn đặt lại',
+    submitting: 'Đang gửi…',
+    sent: 'Chế độ demo: chức năng đặt lại mật khẩu chưa được xây dựng nên không có gì được gửi. Trong bản thật, hướng dẫn sẽ được gửi tới email hoặc số điện thoại này nếu tài khoản tồn tại.',
+    back: 'Quay lại đăng nhập',
   },
 
   fields: {
     fullName: { label: 'Họ và tên', placeholder: 'Nguyễn Văn A' },
-    email: { label: 'Địa chỉ email', placeholder: 'ten@example.com' },
-    phone: { label: 'Số điện thoại', optional: 'Không bắt buộc', placeholder: '+84 912 345 678' },
+    identifier: { label: 'Email hoặc số điện thoại', placeholder: 'ten@example.com hoặc 0912 345 678' },
     password: { label: 'Mật khẩu', placeholder: 'Nhập mật khẩu', newPlaceholder: 'Tạo mật khẩu' },
     confirmPassword: { label: 'Xác nhận mật khẩu', placeholder: 'Nhập lại mật khẩu' },
+    code: { label: 'Mã xác minh', placeholder: 'Mã 6 chữ số' },
   },
 
   showPassword: 'Hiện mật khẩu',
@@ -158,29 +228,27 @@ const vi = {
 
   validation: {
     fullName: 'Vui lòng nhập họ và tên.',
-    emailRequired: 'Vui lòng nhập địa chỉ email.',
-    emailInvalid: 'Email chưa hợp lệ, ví dụ: ten@example.com.',
-    phone: 'Số điện thoại chưa hợp lệ, hoặc bạn có thể để trống.',
+    identifierRequired: 'Vui lòng nhập email hoặc số điện thoại.',
+    identifierInvalid: 'Nhập email hợp lệ (ten@example.com) hoặc số điện thoại (9–15 chữ số).',
     passwordRequired: 'Vui lòng nhập mật khẩu.',
     passwordWeak: 'Mật khẩu chưa đáp ứng đủ các yêu cầu bên dưới.',
+    confirmRequired: 'Vui lòng nhập lại mật khẩu.',
     confirm: 'Mật khẩu xác nhận không khớp.',
     terms: 'Vui lòng đồng ý với Điều khoản dịch vụ và Chính sách quyền riêng tư để tiếp tục.',
+    otpRequired: 'Vui lòng nhập mã xác minh.',
+    otpInvalid: 'Mã phải gồm đúng 6 chữ số.',
   },
 
   errors: {
-    INVALID_CREDENTIALS: 'Email hoặc mật khẩu không đúng. Vui lòng thử lại.',
-    EMAIL_TAKEN: 'Email này đã có tài khoản. Hãy thử đăng nhập.',
+    INVALID_CREDENTIALS: 'Email/số điện thoại hoặc mật khẩu không đúng. Vui lòng thử lại.',
+    ACCOUNT_EXISTS: 'Email hoặc số điện thoại này đã có tài khoản. Hãy thử đăng nhập.',
+    ACCOUNT_NOT_VERIFIED: 'Tài khoản chưa được xác minh. Hãy nhập mã xác minh trước.',
+    INVALID_OTP: 'Mã không đúng. Kiểm tra lại và thử lần nữa.',
+    OTP_ATTEMPTS_EXCEEDED: 'Bạn đã nhập sai quá nhiều lần. Hãy yêu cầu mã mới để thử lại.',
+    REGISTRATION_NOT_FOUND:
+      'Không tìm thấy lượt đăng ký này. Ở chế độ demo, tài khoản mới sẽ mất khi tải lại trang, vui lòng đăng ký lại.',
     NETWORK: 'Không kết nối được máy chủ. Kiểm tra mạng và thử lại.',
     generic: 'Đã có lỗi xảy ra. Vui lòng thử lại.',
-  },
-
-  success: {
-    signupTitle: 'Tài khoản đã sẵn sàng',
-    signupText: (name) => `Chào mừng ${name}. Tài khoản chủ kho của bạn đã được tạo.`,
-    signinTitle: 'Bạn đã đăng nhập',
-    signinText: (email) => `Đã đăng nhập bằng ${email}.`,
-    prototype: 'Bảng điều khiển của chủ kho sẽ có trong giai đoạn tiếp theo.',
-    cta: 'Về trang chủ',
   },
 }
 

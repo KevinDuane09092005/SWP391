@@ -8,7 +8,6 @@ const en = {
   back: 'Back to home',
   languageLabel: 'Language',
   pages: {
-    forgotPassword: { title: 'Reset your password' },
     terms: { title: 'Terms of Service' },
     privacy: { title: 'Privacy' },
     contact: { title: 'Contact' },
@@ -28,7 +27,6 @@ const vi = {
   back: 'Về trang chủ',
   languageLabel: 'Ngôn ngữ',
   pages: {
-    forgotPassword: { title: 'Đặt lại mật khẩu' },
     terms: { title: 'Điều khoản dịch vụ' },
     privacy: { title: 'Quyền riêng tư' },
     contact: { title: 'Liên hệ' },

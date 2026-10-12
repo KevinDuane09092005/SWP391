@@ -213,7 +213,55 @@
 }
 
 .auth-alert svg {
+  flex-shrink: 0;
   margin-top: 1px;
+}
+
+.auth-alert--success {
+  border-color: var(--color-highlight-border);
+  background-color: var(--color-highlight-bg);
+  color: var(--color-primary);
+}
+
+/* Demo notices: neutral, so they read as information rather than success */
+.auth-alert--info {
+  border-color: var(--color-accent-border);
+  background-color: var(--color-accent-soft);
+  color: var(--color-text);
+}
+
+.auth-alert--info svg {
+  color: var(--color-accent);
+}
+
+/* Link-looking button inside an alert (e.g. "Verify this account") */
+.auth-alert__action,
+.auth-text-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-primary);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-alert__action {
+  display: inline-block;
+  margin-top: 6px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-text-button:hover:not(:disabled) {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.auth-text-button:disabled {
+  color: var(--color-muted);
+  font-weight: 500;
+  cursor: default;
 }
 
 /* ---------- Form ---------- */
@@ -418,37 +466,91 @@
   text-align: center;
 }
 
-/* ---------- Success ---------- */
+.auth-switch--tight {
+  margin-top: 10px;
+}
 
-.auth-success {
-  padding-top: 8px;
+/* Title on pages without the Sign Up / Sign In tabs */
+.auth-card__title--first {
+  margin-top: 4px;
+}
+
+/* ---------- OTP ---------- */
+
+.otp-field .field__input {
+  height: 54px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.4em;
   text-align: center;
 }
 
-.auth-success__icon {
-  display: inline-flex;
-  align-items: center;
+.otp-field .field__input::placeholder {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: normal;
+}
+
+.otp-resend {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  margin-top: 28px;
-  border-radius: 999px;
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
+  gap: 6px;
+  margin-top: 18px;
+  color: var(--color-muted);
+  font-size: 14px;
 }
 
-.auth-success .auth-card__title {
-  margin-top: 16px;
-}
+/* ---------- Demo accounts (login page) ---------- */
 
-.auth-success__note {
-  margin: 18px 0 24px;
-  padding: 12px 14px;
-  border: 1px solid var(--color-border);
+.demo-accounts {
+  margin-top: 22px;
+  border: 1px dashed var(--color-border-strong);
   border-radius: var(--radius-md);
-  background-color: var(--color-surface-muted);
-  color: var(--color-text);
+  font-size: 14px;
+}
+
+.demo-accounts summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  color: var(--color-heading);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.demo-accounts__text {
+  padding: 0 14px;
+  color: var(--color-muted);
   font-size: 13.5px;
+}
+
+.demo-accounts__list {
+  margin: 10px 0 0;
+  padding: 0 14px 12px;
+  list-style: none;
+}
+
+.demo-accounts__list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.demo-accounts__list strong {
+  display: block;
+  color: var(--color-heading);
+  font-size: 13.5px;
+}
+
+.demo-accounts__id {
+  color: var(--color-muted);
+  font-size: 13px;
+  overflow-wrap: anywhere;
 }
 
 /* ---------- Responsive ---------- */
