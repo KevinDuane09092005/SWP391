@@ -43,7 +43,7 @@
 }
 
 .home-hero__actions .btn-primary {
-  box-shadow: 0 8px 18px rgba(15, 110, 102, 0.22);
+  box-shadow: var(--shadow-primary);
 }
 
 /* Four reassurance cards under the hero */
@@ -128,7 +128,7 @@
   padding: 14px 18px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background-color: #fbfcfd;
+  background-color: var(--color-surface-subtle);
 }
 
 .handoff__number {

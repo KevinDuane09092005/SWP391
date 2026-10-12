@@ -2,6 +2,7 @@ import Brand from '../components/Brand.jsx'
 import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import ThemeToggle from '../components/ThemeToggle.jsx'
 import { placeholderContent } from '../data/placeholderContent.js'
 import { useLanguage } from '../i18n/LanguageContext.jsx'
 import '../styles/placeholder.css'
@@ -18,7 +19,10 @@ export default function PlaceholderPage({ page }) {
       <header className="placeholder-page__header">
         <div className="container placeholder-page__header-inner">
           <Brand to="/" />
-          <LanguageSwitcher label={content.languageLabel} />
+          <div className="placeholder-page__tools">
+            <ThemeToggle />
+            <LanguageSwitcher label={content.languageLabel} />
+          </div>
         </div>
       </header>
 

@@ -4,6 +4,7 @@ import Brand from '../components/Brand.jsx'
 import Button from '../components/Button.jsx'
 import Icon from '../components/Icon.jsx'
 import LanguageSwitcher from '../components/LanguageSwitcher.jsx'
+import ThemeToggle from '../components/ThemeToggle.jsx'
 import FormField from '../components/auth/FormField.jsx'
 import { authContent } from '../data/authContent.js'
 import { landingContent } from '../data/landingContent.js'
@@ -145,6 +146,7 @@ export default function AuthPage({ mode }) {
         <div className="container auth-topbar__inner">
           <Brand to="/" label={landingContent[language].ui.brandLabel} />
           <div className="auth-topbar__end">
+            <ThemeToggle />
             <LanguageSwitcher label={t.languageLabel} />
             <Link to="/home" className="auth-topbar__back">
               <Icon name="arrowLeft" size={16} />

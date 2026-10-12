@@ -5,6 +5,7 @@ import Button from '../Button.jsx'
 import Icon from '../Icon.jsx'
 import LanguageSwitcher from '../LanguageSwitcher.jsx'
 import SmartLink from '../SmartLink.jsx'
+import ThemeToggle from '../ThemeToggle.jsx'
 
 // Split '/#security' into its page ('/') and section id ('security').
 function parseLink(link) {
@@ -136,6 +137,7 @@ export default function Header({ links, ui }) {
             </div>
           </nav>
 
+          <ThemeToggle className="site-header__lang" />
           <LanguageSwitcher label={ui.languageLabel} className="site-header__lang" />
         </div>
       </div>

@@ -5,13 +5,16 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles/global.css'
 import App from './App.jsx'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
+import { ThemeProvider } from './theme/ThemeContext.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <LanguageProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </LanguageProvider>
+    </ThemeProvider>
   </StrictMode>,
 )

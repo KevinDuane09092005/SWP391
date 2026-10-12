@@ -15,6 +15,16 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script>
+      // Keep in sync with src/theme/ThemeContext.jsx (same storage key).
+      try {
+        var theme = localStorage.getItem('legacyvault.theme')
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+        }
+        document.documentElement.dataset.theme = theme
+      } catch (error) {}
+    </script>
     <title>LegacyVault — Digital Legacy Management</title>
   </head>
   <body>

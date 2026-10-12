@@ -6,8 +6,8 @@
 
 .marketing-page {
   background:
-    radial-gradient(1200px 520px at 0% 0%, #e6f1ef 0%, transparent 60%),
-    radial-gradient(900px 480px at 100% 10%, #f4efe9 0%, transparent 60%),
+    radial-gradient(1200px 520px at 0% 0%, var(--page-glow-1) 0%, transparent 60%),
+    radial-gradient(900px 480px at 100% 10%, var(--page-glow-2) 0%, transparent 60%),
     var(--color-bg);
 }
 
@@ -17,9 +17,9 @@
   align-items: center;
   height: 30px;
   padding: 0 12px;
-  border: 1px solid #cfe3df;
+  border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-sm);
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: var(--color-surface-glass);
   color: var(--color-primary);
   font-size: 12.5px;
   font-weight: 600;
@@ -58,10 +58,10 @@
 
 .dash-preview {
   padding: 18px;
-  border: 1px solid #cfe3df;
+  border: 1px solid var(--color-border-accent);
   border-radius: 20px;
-  background: linear-gradient(135deg, #eef6f4 0%, #f7f9fa 55%, #dfe9f3 100%);
-  box-shadow: 0 24px 48px rgba(15, 29, 53, 0.1);
+  background: var(--gradient-preview);
+  box-shadow: var(--shadow-lg);
 }
 
 .dash-preview__chips {
@@ -79,7 +79,7 @@
 .dash-preview__frame {
   padding: 14px;
   border-radius: 14px;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: var(--color-surface-glass);
 }
 
 .dash-preview__badge {
@@ -93,7 +93,7 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  background-color: #f6f8fa;
+  background-color: var(--color-dash-bg);
   color: var(--color-muted);
   font-size: 6.5px;
   line-height: 1.45;
@@ -138,7 +138,7 @@
   height: 14px;
   border-radius: 4px;
   background-color: var(--color-heading);
-  color: #ffffff;
+  color: var(--color-surface);
 }
 
 .dash__user {

@@ -188,7 +188,7 @@
   gap: 12px;
   margin-top: 18px;
   padding: 10px 14px;
-  border: 1px solid #cfe3df;
+  border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-md);
   background-color: var(--color-primary-soft);
   color: var(--color-text);
@@ -205,10 +205,10 @@
   gap: 10px;
   margin-top: 18px;
   padding: 12px 14px;
-  border: 1px solid #f1c7c2;
+  border: 1px solid var(--color-danger-soft-border);
   border-radius: var(--radius-md);
-  background-color: #fdf1ef;
-  color: #a2321f;
+  background-color: var(--color-danger-bg);
+  color: var(--color-danger);
   font-size: 14px;
 }
 
@@ -263,7 +263,7 @@
 }
 
 .field__input::placeholder {
-  color: #8a97a8;
+  color: var(--color-placeholder);
 }
 
 .field__input:hover {
@@ -273,7 +273,7 @@
 .field__input:focus {
   border-color: var(--color-primary);
   outline: none;
-  box-shadow: 0 0 0 3px rgba(15, 110, 102, 0.15);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .field__input:disabled {
@@ -309,11 +309,11 @@
 }
 
 .field--invalid .field__input {
-  border-color: #d0533f;
+  border-color: var(--color-danger-border);
 }
 
 .field--invalid .field__input:focus {
-  box-shadow: 0 0 0 3px rgba(208, 83, 63, 0.15);
+  box-shadow: 0 0 0 3px var(--focus-ring-danger);
 }
 
 .field__error {
@@ -321,7 +321,7 @@
   align-items: flex-start;
   gap: 6px;
   margin-top: 6px;
-  color: #b23a26;
+  color: var(--color-danger);
   font-size: 13px;
 }
 
@@ -393,8 +393,8 @@
 .spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.35);
-  border-top-color: #ffffff;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
   border-radius: 999px;
   animation: spin 0.8s linear infinite;
 }

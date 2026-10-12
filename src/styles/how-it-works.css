@@ -108,9 +108,9 @@
   gap: 14px;
   width: 100%;
   padding: 18px;
-  border: 1px solid #d6e8e4;
+  border: 1px solid var(--color-border-accent);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, #eef7f4 0%, #f8fafb 45%, #eef3f8 100%);
+  background: var(--gradient-panel);
   box-shadow: var(--shadow-md);
 }
 
@@ -135,8 +135,8 @@
 }
 
 .rv-box--highlight {
-  border-color: #bfe0d9;
-  background-color: #f2f9f7;
+  border-color: var(--color-highlight-border);
+  background-color: var(--color-highlight-bg);
 }
 
 .rv-box__title {
@@ -181,7 +181,7 @@
   width: 20px;
   height: 2px;
   border-radius: 2px;
-  background-color: #a9d6cd;
+  background-color: var(--color-connector);
 }
 
 .rv-steps__number {
